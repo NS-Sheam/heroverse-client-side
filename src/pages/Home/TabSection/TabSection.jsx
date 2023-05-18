@@ -26,17 +26,17 @@ const TabSection = () => {
                     <Tab><p className='text-xl font-bold bg-orange-primary px-6 py-2 rounded-full text-white'>Car</p></Tab>
                 </TabList>
                 <TabPanel>
-                    <div className="flex gap-5 shadow-2xl my-4">
+                    <div className="flex flex-col lg:flex-row my-5 gap-5">
                         {
                             dollData?.slice(0, 3).map((data) => {
                                 return (
-                                    <div key={data._id} className="card w-full bg-base-100 shadow-xl">
+                                    <div key={data._id} className="card lg:w-1/3 bg-base-100 shadow-xl">
                                         <figure className='h-1/2'>
-                                            <img src={data.image} className='h-full' alt="Shoes" />
-                                            </figure>
+                                            <img src={data.image} className='h-full w-full' alt="Shoes" />
+                                        </figure>
                                         <div className="card-body">
                                             <h2 className="card-title">{data.toyName}</h2>
-                                            <p>{data.details.substring(0, 40)}</p>
+                                            <p>{data.details}</p>
                                             <div className="card-actions justify-end">
                                                 <button className="px-4 py-2 rounded-full text-white bg-orange-primary hover:bg-orange-secondary">Show more</button>
                                             </div>
@@ -48,7 +48,26 @@ const TabSection = () => {
                     </div>
                 </TabPanel>
                 <TabPanel>
-                    <h2>Any content 2</h2>
+                    <div className="flex flex-col lg:flex-row my-5 gap-5">
+                        {
+                            carData?.slice(0, 3).map((data) => {
+                                return (
+                                    <div key={data._id} className="card lg:w-1/3 bg-base-100 shadow-xl">
+                                        <figure className='h-1/2'>
+                                            <img src={data.image} className='h-full w-full' alt="Shoes" />
+                                        </figure>
+                                        <div className="card-body">
+                                            <h2 className="card-title">{data.toyName}</h2>
+                                            <p>{data.details}</p>
+                                            <div className="card-actions justify-end">
+                                                <button className="px-4 py-2 rounded-full text-white bg-orange-primary hover:bg-orange-secondary">Show more</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            })
+                        }
+                    </div>
                 </TabPanel>
             </Tabs>
         </div>
