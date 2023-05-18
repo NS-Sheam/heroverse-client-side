@@ -13,7 +13,7 @@ const Banner = () => {
             }}
             className="min-h-screen px-6 py-6"
         >
-            <div className="container mx-auto lg:flex justify-between items-center ">
+            <div className="container mx-auto my-auto lg:flex justify-between items-center space-y-4 lg:space-y-0">
                 {/* left div  */}
                 <div className="lg:w-1/2 space-y-3">
                     <h1 className="text-3xl lg:text-5xl font-extrabold text-white">Welcome to Heroverse-</h1>

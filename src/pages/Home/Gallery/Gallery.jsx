@@ -1,26 +1,36 @@
 import { useEffect, useState } from "react";
-import PhotoAlbum from "react-photo-album";
 const Gallery = () => {
     const [toyData, setToyData] = useState([]);
-    const photoSrc = toyData.map(photo => photo.image);
-    const photos = photoSrc.map((src, index) => ({
-        src: src,
-        width: index % 2 === 0 ? 1600 : 1000,
-        height: index % 2 === 1 ? 1400 : 900,
-      }));
+
     useEffect(() => {
         fetch("http://localhost:5000/allData")
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 setToyData(data);
             })
     }, [])
 
     return (
         <div className="container mx-auto px-10 my-5">
-            <h1 className="text-2xl lg:text-5xl font-bold mb-4 lg:mb-6 text-center text-orange-primary">Explore Our Gallery</h1>
-            <PhotoAlbum layout="rows" photos={photos} />;
+            <h1 className="text-2xl lg:text-4xl font-bold my-4 lg:my-8 text-center text-orange-primary">Explore Our Gallery</h1>
+            <div className="flex flex-wrap gap-5 mx-auto justify-center items-center">
+                {
+                    toyData?.slice(0, 8).map((data, i) => {
+                        return (
+                            <div key={i} className="relative">
+                                <img
+                                    className={`${i % 2 === 0 ? "w-16 lg:w-72 h-24 lg:h-72" : "w-20 lg:w-48 h-24 lg:h-60"}  rounded-md shadow-2xl`}
+                                    src={data.image}
+                                    alt="" />
+                                <div className='flex justify-center items-center bg-black bg-opacity-75 absolute -top-12 hover:top-0 h-full w-full right-0 rounded-md opacity-0 hover:opacity-100 p-4 transform duration-200'>
+                                    <h2 className='text-center text-2xl text-white font-bold'>{data.toyName}</h2>
+                                </div>
+                            </div>
+                        )
+                    })
+                }
+            </div>
         </div>
     );
 };
