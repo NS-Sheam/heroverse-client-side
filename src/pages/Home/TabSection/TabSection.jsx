@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import { Rating } from '@smastrom/react-rating'
+import '@smastrom/react-rating/style.css'
 import 'react-tabs/style/react-tabs.css';
+
 
 const TabSection = () => {
     const [dollData, setDollData] = useState([]);
@@ -26,19 +29,27 @@ const TabSection = () => {
                     <Tab><p className='text-xl font-bold bg-orange-primary px-6 py-2 rounded-full text-white'>Car</p></Tab>
                 </TabList>
                 <TabPanel>
-                    <div className="flex flex-col lg:flex-row my-5 gap-5">
+                <div className="flex flex-col lg:flex-row my-5 gap-5">
                         {
                             dollData?.slice(0, 3).map((data) => {
                                 return (
-                                    <div key={data._id} className="card lg:w-1/3 bg-base-100 shadow-xl">
+                                    <div key={data._id} className="card lg:w-1/3 bg-base-100 shadow-xl p-5">
                                         <figure className='h-1/2'>
                                             <img src={data.image} className='h-full w-full' alt="Shoes" />
                                         </figure>
-                                        <div className="card-body">
+                                        <div className="flex flex-col gap-5 pt-5">
                                             <h2 className="card-title">{data.toyName}</h2>
-                                            <p>{data.details}</p>
+                                            <p>Price: {data.price}</p>
+                                            <div>
+                                                <span> Rating: {data.rating}
+                                                    <Rating
+                                                        style={{ maxWidth: 100 }}
+                                                        value={data.rating} readOnly
+                                                    />
+                                                </span>
+                                            </div>
                                             <div className="card-actions justify-end">
-                                                <button className="px-4 py-2 rounded-full text-white bg-orange-primary hover:bg-orange-secondary">Show more</button>
+                                                <button className="px-4 py-2 rounded-full text-white bg-orange-primary hover:bg-orange-secondary">View Details</button>
                                             </div>
                                         </div>
                                     </div>
@@ -52,15 +63,23 @@ const TabSection = () => {
                         {
                             carData?.slice(0, 3).map((data) => {
                                 return (
-                                    <div key={data._id} className="card lg:w-1/3 bg-base-100 shadow-xl">
+                                    <div key={data._id} className="card lg:w-1/3 bg-base-100 shadow-xl p-5">
                                         <figure className='h-1/2'>
                                             <img src={data.image} className='h-full w-full' alt="Shoes" />
                                         </figure>
-                                        <div className="card-body">
+                                        <div className="flex flex-col gap-5 pt-5">
                                             <h2 className="card-title">{data.toyName}</h2>
-                                            <p>{data.details}</p>
+                                            <p>Price: {data.price}</p>
+                                            <div>
+                                                <span> Rating: {data.rating}
+                                                    <Rating
+                                                        style={{ maxWidth: 100 }}
+                                                        value={data.rating} readOnly
+                                                    />
+                                                </span>
+                                            </div>
                                             <div className="card-actions justify-end">
-                                                <button className="px-4 py-2 rounded-full text-white bg-orange-primary hover:bg-orange-secondary">Show more</button>
+                                                <button className="px-4 py-2 rounded-full text-white bg-orange-primary hover:bg-orange-secondary">View Details</button>
                                             </div>
                                         </div>
                                     </div>
