@@ -59,14 +59,14 @@ const Header = () => {
                     <li className="lg:hidden">
                         <FaUserAlt />
                     </li>
-                    <li> 
+                    <li className="lg:hidden"> 
                         <ActiveLink to={`/login`}>
                             Login
                         </ActiveLink>
                     </li>
                     {/* Conditional render end  */}
                     <li className="lg:hidden">
-                        <ActiveLink to={`/login`}>
+                        <ActiveLink to={`/logout`}>
                             Logout
                         </ActiveLink>
                     </li>
@@ -83,7 +83,7 @@ const Header = () => {
                         </ActiveLink>
                     </li>
                     <li>
-                        <ActiveLink to={`/login`}>
+                        <ActiveLink to={`/logout`}>
                             Logout
                         </ActiveLink>
                     </li>

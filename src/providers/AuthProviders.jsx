@@ -1,5 +1,4 @@
 
-
 const AuthProviders = () => {
     return (
         <div>
