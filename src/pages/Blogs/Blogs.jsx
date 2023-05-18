@@ -1,4 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
+
 import { useState } from "react";
 
 const Blogs = () => {
@@ -7,7 +8,7 @@ const Blogs = () => {
     const [foldQ3, setFoldQ3] = useState(false)
     const [foldQ4, setFoldQ4] = useState(false)
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 py-5">
+        <div className="space-y-5 py-5">
             <div className="card bg-base-100 shadow-xl w-3/4 mx-auto">
                 <div className="card-body">
                     <h2 className="card-title">What is an access token and refresh token? How do they work and where should we store them on the client-side?</h2>

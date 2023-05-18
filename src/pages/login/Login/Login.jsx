@@ -2,14 +2,29 @@
 import Lottie from "react-lottie";
 import animation from "../../../../public/animation/login.json"
 import GoogleButton from "react-google-button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../../providers/AuthProviders";
 const Login = () => {
+    const {logIn} = useContext(AuthContext);
+    const [error, setError] = useState(null)
+    const navigate = useNavigate()
     const handleLogin = event => {
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password);
+        logIn(email, password)
+        .then(result => {
+            const loggedUser = result.user;
+            console.log(loggedUser);
+            navigate("/");
+        })
+        .catch(error=>{
+            setError(error.message)
+        })
+
     }
     return (
         <div className="hero bg-base-200">
@@ -48,6 +63,11 @@ const Login = () => {
                                 onClick={() => { console.log('Google button clicked') }}
                             />
                         </div>
+                        {
+                            error ?
+                                <p className="text-error text-center">{error}</p> :
+                                ""
+                        }
                         <p className="text-center">Not have an account? <Link to="/register" className="text-orange-primary font-bold">Register</Link></p>
                     </div>
                 </div>

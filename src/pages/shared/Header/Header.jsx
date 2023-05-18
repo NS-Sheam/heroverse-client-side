@@ -2,7 +2,18 @@ import logo from "../../../assets/herologo.png"
 import { FaUserAlt } from 'react-icons/fa';
 import ActiveLink from "../ActiveLink/ActiveLink";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../../providers/AuthProviders";
 const Header = () => {
+    const { user, logOut } = useContext(AuthContext);
+    console.log(user);
+    const handleLogout = () => {
+        logOut()
+            .then()
+            .catch(error => {
+                console.log(error);
+            })
+    }
     return (
         <div className="navbar bg-orange-primary text-white font-bold">
             <div className="navbar-start">
@@ -26,6 +37,30 @@ const Header = () => {
                         <li>
                             <ActiveLink to={`/blogs`}>blogs</ActiveLink>
                         </li>
+                        {
+                            !user ?
+
+                                <li>
+                                    <div>
+                                        <FaUserAlt />
+                                    </div>
+                                    <div>
+                                        <ActiveLink to={`/login`}>
+                                            Login
+                                        </ActiveLink>
+                                    </div>
+                                </li> :
+                                <li>
+                                    <div className="">
+                                        <img className="h-10 w-10 rounded-full" src={user.photoURL} title={user.displayName} alt="" />
+                                    </div>
+                                    <div>
+                                        <Link onClick={handleLogout}>
+                                            Logout
+                                        </Link>
+                                    </div>
+                                </li>
+                        }
                     </ul>
                 </div>
 
@@ -59,7 +94,7 @@ const Header = () => {
                     <li className="lg:hidden">
                         <FaUserAlt />
                     </li>
-                    <li className="lg:hidden"> 
+                    <li className="lg:hidden">
                         <ActiveLink to={`/login`}>
                             Login
                         </ActiveLink>
@@ -74,19 +109,30 @@ const Header = () => {
             </div>
             <div className="navbar-end hidden lg:block">
                 <ul className="flex justify-center items-center gap-4 px-1">
-                    <li>
-                        <FaUserAlt />
-                    </li>
-                    <li>
-                        <ActiveLink to={`/login`}>
-                            Login
-                        </ActiveLink>
-                    </li>
-                    <li>
-                        <ActiveLink to={`/logout`}>
-                            Logout
-                        </ActiveLink>
-                    </li>
+                    {
+                        !user ?
+
+                            <>
+                                <li>
+                                    <FaUserAlt />
+                                </li>
+                                <li>
+                                    <ActiveLink to={`/login`}>
+                                        Login
+                                    </ActiveLink>
+                                </li>
+                            </> :
+                            <>
+                                <li>
+                                    <img className="w-10 h-10 rounded-full" src={user.photoURL} title={user.displayName} alt="" />
+                                </li>
+                                <li>
+                                    <Link onClick={handleLogout}>
+                                        Logout
+                                    </Link>
+                                </li>
+                            </>
+                    }
                 </ul>
             </div>
         </div>
