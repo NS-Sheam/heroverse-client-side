@@ -9,7 +9,7 @@ const Footer = () => {
                 <p>Heroverse Toy Industries Ltd.<br />Providing best toy for kids</p>
             </div>
             <div>
-                <span className="footer-title">Services</span>
+                <span className="text-white text-xl">Services</span>
                 <Link to="/" className="link link-hover">Branding</Link>
                 <Link to="/" className="link link-hover">Design</Link>
                 <Link to="/" className="link link-hover">Marketing</Link>
@@ -17,7 +17,7 @@ const Footer = () => {
                 <Link to="/" className="link link-hover">Blogs</Link>
             </div>
             <div>
-                <span className="footer-title">Company</span>
+                <span className="text-white text-xl">Company</span>
                 <Link to="/" className="link link-hover">About us</Link>
                 <Link to="/" className="link link-hover">Contact</Link>
                 <Link to="/" className="link link-hover">Jobs</Link>
@@ -25,7 +25,7 @@ const Footer = () => {
                 <Link to="/" className="link link-hover">register</Link>
             </div>
             <div>
-                <span className="footer-title">Legal</span>
+                <span className="text-white text-xl">Legal</span>
                 <Link to="/" className="link link-hover">Terms of use</Link>
                 <Link to="/" className="link link-hover">Privacy policy</Link>
                 <Link to="/" className="link link-hover">Cookie policy</Link>
