@@ -14,6 +14,7 @@ const Login = () => {
     return (
         <div className="hero bg-base-200">
             <form onSubmit={handleLogin} className="hero-content flex-col lg:flex-row-reverse">
+            <div className="hidden lg:block">
                 <Lottie
                     options={{
                         animationData: animation,
@@ -21,6 +22,7 @@ const Login = () => {
                     width={600}
                     height={800}
                 />
+                </div>
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                     <div className="card-body">
                         <div className="form-control">
