@@ -1,8 +1,10 @@
 
 import Lottie from "react-lottie";
 import animation from "../../../../public/animation/login.json"
+import GoogleButton from "react-google-button";
+import { Link } from "react-router-dom";
 const Login = () => {
-    const handleLogin = event =>{
+    const handleLogin = event => {
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
@@ -37,8 +39,14 @@ const Login = () => {
                             </label>
                         </div>
                         <div className="form-control mt-6">
-                            <button type="submit" className="btn bg-orange-primary outline-none border-none hover:bg-orange-secondary">Login</button>
+                            <button type="submit" className="btn bg-orange-primary outline-none border-none hover:bg-orange-secondary font-bold">Login</button>
                         </div>
+                        <div className="w-full">
+                            <GoogleButton className="mx-auto"
+                                onClick={() => { console.log('Google button clicked') }}
+                            />
+                        </div>
+                        <p className="text-center">Not have an account? <Link to="/register" className="text-orange-primary font-bold">Register</Link></p>
                     </div>
                 </div>
             </form>
