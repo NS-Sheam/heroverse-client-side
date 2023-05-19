@@ -1,17 +1,21 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigation } from "react-router-dom";
 import AllToysRows from "./AllToysRows";
 import SingleToy from "../../components/SingleToy/SingleToy";
 import { useState } from "react";
 
 const AllToys = () => {
+    const navigation = useNavigation();
+    console.log(navigation.state);
     const allToys = useLoaderData();
     const [singleToyData, setSingleToyData] = useState([]);
+    const [loading, setLoading] = useState(true);
     const handleSingleToyData = id => {
         fetch(`http://localhost:5000/alldata/${id}`)
             .then(res => res.json())
             .then(data => {
                 // console.log(data);
                 setSingleToyData(data);
+                setLoading(false);
             })
     }
     return (
@@ -32,7 +36,7 @@ const AllToys = () => {
                     <tbody>
                         {/* table row */}
                         {
-                            allToys.map(toy => {
+                            allToys?.map(toy => {
                                 return (
                                     <AllToysRows
                                         key={toy._id}
@@ -46,9 +50,11 @@ const AllToys = () => {
                     </tbody>
                 </table>
             </div>
-            <SingleToy
+            {
+                !setLoading ? <p>loaaaaadiiing....</p> : <SingleToy
                 singleToyData={singleToyData}
             />
+            }
         </div>
     );
 };
