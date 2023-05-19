@@ -32,7 +32,7 @@ const Header = () => {
                             <ActiveLink to={`/mytoys`}>My toys</ActiveLink>
                         </li>
                         <li>
-                            <ActiveLink to={`/addtoys`}>Add a toys</ActiveLink>
+                            <ActiveLink to={`/addtoy`}>Add a toys</ActiveLink>
                         </li>
                         <li>
                             <ActiveLink to={`/blogs`}>blogs</ActiveLink>
@@ -84,7 +84,7 @@ const Header = () => {
                         <ActiveLink to={`/mytoys`}>My toys</ActiveLink>
                     </li>
                     <li>
-                        <ActiveLink to={`/addtoys`}>Add a toys</ActiveLink>
+                        <ActiveLink to={`/addtoy`}>Add a toys</ActiveLink>
                     </li>
                     {/* Conditional render end */}
                     <li>
