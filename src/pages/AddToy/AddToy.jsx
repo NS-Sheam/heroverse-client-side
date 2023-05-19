@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 
 const AddToy = () => {
     const handleAddToy = (event) => {
@@ -5,9 +6,9 @@ const AddToy = () => {
         const form = event.target;
         const seller = form.seller.value;
         const email = form.email.value;
-        const toyname = form.toyname.value;
+        const toyName = form.toyname.value;
         const image = form.image.value;
-        const category = form.category.value;
+        const category = form.category.value.toLowerCase();
         const subCategory = form.subcategory.value;
         const price = form.price.value;
         const rating = form.rating.value;
@@ -16,7 +17,7 @@ const AddToy = () => {
         const addedToyDetails = {
             seller,
             email,
-            toyname,
+            toyName,
             image,
             category,
             subCategory,
@@ -26,6 +27,26 @@ const AddToy = () => {
             details
         };
         console.log(addedToyDetails);
+        fetch(`http://localhost:5000/addtoy`, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(addedToyDetails)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.insertedId) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Your work has been saved',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+
+            })
     }
     return (
         <div className="hero bg-base-200 min-h-screen px-4 lg:px-10 py-5">
@@ -64,7 +85,13 @@ const AddToy = () => {
                             <label className="label">
                                 <span className="label-text">Category</span>
                             </label>
-                            <input type="text" placeholder="Category" name="category" className="input input-bordered" />
+                            <select name="category" className="select w-full">
+                                <option disabled selected>Category</option>
+                                <option>Doll</option>
+                                <option>Car</option>
+                                <option>Robot</option>
+                                <option>Others</option>
+                            </select>
                         </div>
                         <div className="form-control">
                             <label className="label">
@@ -76,19 +103,19 @@ const AddToy = () => {
                             <label className="label">
                                 <span className="label-text">Price</span>
                             </label>
-                            <input type="number" placeholder="Price" name="price" className="input input-bordered" />
+                            <input type="text" placeholder="Price" name="price" defaultValue={"$"} className="input input-bordered" />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Rating</span>
                             </label>
-                            <input type="number" placeholder="Rating" name="rating" className="input input-bordered" />
+                            <input type="number" placeholder="Rating" step="0.01" name="rating" className="input input-bordered" />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Quantity</span>
                             </label>
-                            <input type="text" placeholder="Quantity" name="quantity" className="input input-bordered" />
+                            <input type="number" placeholder="Quantity" name="quantity" className="input input-bordered" />
                         </div>
                         <div className="form-control lg:col-span-3">
                             <label className="label">
