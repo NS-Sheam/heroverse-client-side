@@ -26,7 +26,7 @@ const Header = () => {
                             <ActiveLink to={`/`}>Home</ActiveLink>
                         </li>
                         <li>
-                            <ActiveLink to={`alltoys`}>All toys</ActiveLink>
+                            <ActiveLink to={`/alltoys`}>All toys</ActiveLink>
                         </li>
                         <li>
                             <ActiveLink to={`/mytoys`}>My toys</ActiveLink>
