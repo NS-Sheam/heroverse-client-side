@@ -1,7 +1,6 @@
-import { Link } from "react-router-dom";
 
-const AllToysRows = ({ toy }) => {
-    const { toyName, seller, email, image, price, quantity } = toy;
+const AllToysRows = ({ toy, handleSingleToyData }) => {
+    const { _id, toyName, seller, email, image, price, quantity } = toy;
     return (
         <tr>
             <td>
@@ -25,7 +24,12 @@ const AllToysRows = ({ toy }) => {
             <td>{price}</td>
             <td>{quantity} pcs. availbale</td>
             <th>
-               <label htmlFor="my-modal-5" className="btn btn-xs border-none text-white bg-orange-primary hover:bg-orange-secondary">Details
+                <label
+                    onClick={() => handleSingleToyData(_id)}
+                    htmlFor="my-modal-5"
+                    className="btn btn-xs border-none text-white bg-orange-primary hover:bg-orange-secondary"
+                >
+                    Details
                 </label>
             </th>
         </tr>

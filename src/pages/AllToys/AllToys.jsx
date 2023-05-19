@@ -7,7 +7,12 @@ const AllToys = () => {
     const allToys = useLoaderData();
     const [singleToyData, setSingleToyData] = useState([]);
     const handleSingleToyData = id => {
-        console.log("object");
+        fetch(`http://localhost:5000/alldata/${id}`)
+            .then(res => res.json())
+            .then(data => {
+                // console.log(data);
+                setSingleToyData(data);
+            })
     }
     return (
         <div className="container mx-auto px-10 my-5">
@@ -29,13 +34,11 @@ const AllToys = () => {
                         {
                             allToys.map(toy => {
                                 return (
-                                    <>
-                                        <AllToysRows
-                                            key={toy._id}
-                                            toy={toy}
-                                            handleSingleToyData={handleSingleToyData}
-                                        />
-                                    </>
+                                    <AllToysRows
+                                        key={toy._id}
+                                        toy={toy}
+                                        handleSingleToyData={handleSingleToyData}
+                                    />
                                 )
                             })
                         }
@@ -43,7 +46,9 @@ const AllToys = () => {
                     </tbody>
                 </table>
             </div>
-            <SingleToy />
+            <SingleToy
+                singleToyData={singleToyData}
+            />
         </div>
     );
 };
