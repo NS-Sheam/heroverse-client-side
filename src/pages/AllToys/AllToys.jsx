@@ -1,8 +1,14 @@
 import { useLoaderData } from "react-router-dom";
 import AllToysRows from "./AllToysRows";
+import SingleToy from "../../components/SingleToy/SingleToy";
+import { useState } from "react";
 
 const AllToys = () => {
     const allToys = useLoaderData();
+    const [singleToyData, setSingleToyData] = useState([]);
+    const handleSingleToyData = id => {
+        console.log("object");
+    }
     return (
         <div className="container mx-auto px-10 my-5">
             <h1 className="text-2xl lg:text-4xl font-bold my-4 lg:my-8 text-center text-orange-primary">Explore Our Gallery</h1>
@@ -21,17 +27,23 @@ const AllToys = () => {
                     <tbody>
                         {/* table row */}
                         {
-                            allToys.map(toy => (<AllToysRows
-                                key={toy._id}
-                                toy={toy}
-                            />))
+                            allToys.map(toy => {
+                                return (
+                                    <>
+                                        <AllToysRows
+                                            key={toy._id}
+                                            toy={toy}
+                                            handleSingleToyData={handleSingleToyData}
+                                        />
+                                    </>
+                                )
+                            })
                         }
-                        {/* row */}
-
+                        {/* table row finished */}
                     </tbody>
-
                 </table>
             </div>
+            <SingleToy />
         </div>
     );
 };

@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 
-const AllToysRows = ({toy}) => {
-    const { _id, toyName, seller, email, category, image, price, quantity, details } = toy;
+const AllToysRows = ({ toy }) => {
+    const { toyName, seller, email, image, price, quantity } = toy;
     return (
         <tr>
             <td>
@@ -21,10 +22,11 @@ const AllToysRows = ({toy}) => {
                 <br />
                 <span className="badge badge-ghost badge-sm">Email: {email}</span>
             </td>
-            <td>{quantity} pcs. available</td>
-            <td>Purple</td>
+            <td>{price}</td>
+            <td>{quantity} pcs. availbale</td>
             <th>
-                <button className="btn btn-xs border-none text-white bg-orange-primary hover:bg-orange-secondary">Details</button>
+               <label htmlFor="my-modal-5" className="btn btn-xs border-none text-white bg-orange-primary hover:bg-orange-secondary">Details
+                </label>
             </th>
         </tr>
     );
