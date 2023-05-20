@@ -1,3 +1,4 @@
+import FeedBack from "../../FeedBack/FeedBack";
 import Banner from "../Banner/Banner";
 import Gallery from "../Gallery/Gallery";
 import TabSection from "../TabSection/TabSection";
@@ -8,6 +9,7 @@ const Home = () => {
             <Banner />
             <Gallery />
             <TabSection />
+            <FeedBack />
         </div>
     );
 };

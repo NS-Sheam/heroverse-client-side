@@ -1,7 +1,13 @@
 import Marquee from "react-fast-marquee";
 import bannerImg from "../../../assets/banner.jpg"
 import superheros from "../../../assets/superhero.png"
+import { useEffect } from "react";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 const Banner = () => {
+    useEffect(() => {
+        AOS.init();
+      }, []);
     return (
         <div
             style={{
@@ -15,7 +21,10 @@ const Banner = () => {
         >
             <div className="container mx-auto my-auto lg:flex justify-between items-center space-y-4 lg:space-y-0">
                 {/* left div  */}
-                <div className="lg:w-1/2 space-y-3">
+                <div
+                data-aos="fade-up"
+                data-aos-anchor-placement="center-center"
+                className="lg:w-1/2 space-y-3">
                     <h1 className="text-3xl lg:text-5xl font-extrabold text-white">Welcome to Heroverse-</h1>
                     <h3 className="text-xl lg:text-3xl font-bold text-orange-secondary">Your Ultimate Destination for Action Figure Collectibles!</h3>
                     <p className="text-xl lg:text-2xl text-white font-bold">
