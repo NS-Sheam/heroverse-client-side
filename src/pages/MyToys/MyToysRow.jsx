@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 const MyToysRow = ({ toy, handleDelete }) => {
-    const { _id, toyName, seller, email, image, price, quantity } = toy;
+    const { _id, toyName, seller, image, price, quantity } = toy;
     return (
         <tr>
             <td>
@@ -19,19 +19,17 @@ const MyToysRow = ({ toy, handleDelete }) => {
             </td>
             <td>
                 {seller}
-                <br />
-                <span className="badge badge-ghost badge-sm">Email: {email}</span>
             </td>
             <td>{price}</td>
             <td>{quantity} pcs. availbale</td>
             <th className="space-x-2">
                 <Link to={`/updatetoy/${_id}`}>
-                <label
-                    htmlFor="my-modal-5"
-                    className="btn btn-xs border-none text-white bg-orange-primary hover:bg-orange-secondary"
-                >
-                    Edit
-                </label>
+                    <label
+                        htmlFor="my-modal-5"
+                        className="btn btn-xs border-none text-white bg-orange-primary hover:bg-orange-secondary"
+                    >
+                        Edit
+                    </label>
                 </Link>
                 <label
                     onClick={() => handleDelete(_id)}

@@ -1,12 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../providers/AuthProviders";
-import SingleToy from "../../components/SingleToy/SingleToy";
 import MyToysRow from "./MyToysRow";
+import Swal from "sweetalert2";
 
 const MyToys = () => {
     const { user } = useContext(AuthContext);
     const [myToys, setMyToys] = useState([]);
-    const [singleToyData, setSingleToyData] = useState([]);
     useEffect(() => {
         fetch(`http://localhost:5000/allData?email=${user?.email}`)
             .then(res => res.json())
@@ -14,13 +13,35 @@ const MyToys = () => {
                 setMyToys(data);
             })
     }, [user]);
-    const handleUpdata = id => {
-        fetch(`http://localhost:5000/alldata/${id}`)
-            .then(res => res.json())
-            .then(data => {
-                // console.log(data);
-                setSingleToyData(data);
-            })
+    const handleDelete = id => {
+        Swal.fire({
+            title: 'Are you sure want to delete?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/delete/${id}`, {
+                    method: "DELETE"
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        // console.log(data);
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        )
+                        if (data.deletedCount > 0) {
+                            const remaining = myToys.filter(toy => toy._id !== id)
+                            setMyToys(remaining);
+                        }
+                    })
+            }
+        })
     }
 
     return (
@@ -33,7 +54,7 @@ const MyToys = () => {
                     {/* head */}
                     <thead>
                         <tr>
-                            <td>Toy Name price</td>
+                            <td>Toy Name</td>
                             <td>Category</td>
                             <td>Seller</td>
                             <td>Available Quantity</td>
@@ -48,7 +69,7 @@ const MyToys = () => {
                                     <MyToysRow
                                         key={toy._id}
                                         toy={toy}
-                                        handleUpdata={handleUpdata}
+                                        handleDelete={handleDelete}
                                     />
                                 )
                             })
@@ -57,9 +78,6 @@ const MyToys = () => {
                     </tbody>
                 </table>
             </div>
-            <SingleToy
-                singleToyData={singleToyData}
-            />
         </div>
     );
 };
