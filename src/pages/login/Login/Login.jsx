@@ -2,12 +2,14 @@
 import Lottie from "react-lottie";
 import animation from "../../../../public/animation/login.json"
 import GoogleButton from "react-google-button";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../providers/AuthProviders";
 const Login = () => {
     const {logIn} = useContext(AuthContext);
     const [error, setError] = useState(null)
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
     const navigate = useNavigate()
     const handleLogin = event => {
         event.preventDefault();
@@ -19,7 +21,8 @@ const Login = () => {
         .then(result => {
             const loggedUser = result.user;
             console.log(loggedUser);
-            navigate("/");
+            form.reset();
+            navigate(from, {replace: true});
         })
         .catch(error=>{
             setError(error.message)

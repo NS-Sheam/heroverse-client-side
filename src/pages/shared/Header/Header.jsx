@@ -7,6 +7,14 @@ import { AuthContext } from "../../../providers/AuthProviders";
 const Header = () => {
     const { user, logOut } = useContext(AuthContext);
     // console.log(user);
+    const userRender = <>
+        <li>
+            <ActiveLink to={`/mytoys`}>My toys</ActiveLink>
+        </li>
+        <li>
+            <ActiveLink to={`/addtoy`}>Add a toys</ActiveLink>
+        </li>
+    </>
     const handleLogout = () => {
         logOut()
             .then()
@@ -28,12 +36,10 @@ const Header = () => {
                         <li>
                             <ActiveLink to={`/alltoys`}>All toys</ActiveLink>
                         </li>
-                        <li>
-                            <ActiveLink to={`/mytoys`}>My toys</ActiveLink>
-                        </li>
-                        <li>
-                            <ActiveLink to={`/addtoy`}>Add a toys</ActiveLink>
-                        </li>
+                        {
+                            user &&
+                            userRender
+                        }
                         <li>
                             <ActiveLink to={`/blogs`}>blogs</ActiveLink>
                         </li>
@@ -80,12 +86,10 @@ const Header = () => {
                     </li>
 
                     {/* Conditional render */}
-                    <li>
-                        <ActiveLink to={`/mytoys`}>My toys</ActiveLink>
-                    </li>
-                    <li>
-                        <ActiveLink to={`/addtoy`}>Add a toys</ActiveLink>
-                    </li>
+                    {
+                        user &&
+                        userRender
+                    }
                     {/* Conditional render end */}
                     <li>
                         <ActiveLink to={`/blogs`}>blogs</ActiveLink>

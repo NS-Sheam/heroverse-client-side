@@ -1,28 +1,39 @@
 
 import AllToysRows from "./AllToysRows";
 import SingleToy from "../../components/SingleToy/SingleToy";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { Navigate, useLocation, useNavigate, useNavigation } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProviders";
 
 const AllToys = () => {
-    const [allToys, setAlltoys] = useState([]) ;
+    const [allToys, setAlltoys] = useState([]);
     const [singleToyData, setSingleToyData] = useState([]);
     const [filterOption, setFilterOption] = useState("all");
-    useEffect(()=> {
+    const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
+    // const location = useLocation();
+    useEffect(() => {
         fetch(`http://localhost:5000/allData?filter=${filterOption}`)
-        .then(res => res.json())
-        .then(data => {
-            setAlltoys(data);
-        })
+            .then(res => res.json())
+            .then(data => {
+                setAlltoys(data);
+            })
     }, [filterOption])
+
+
     const handleSingleToyData = id => {
+        if (!user) {
+            navigate("/login", { state: { from: location } })
+        }
         fetch(`http://localhost:5000/alldata/${id}`)
             .then(res => res.json())
             .then(data => {
                 // console.log(data);
                 setSingleToyData(data);
             })
+
     }
-    const handleFilterOption = event =>{
+    const handleFilterOption = event => {
         const filter = event.target.value;
         setFilterOption(filter);
     }
@@ -31,11 +42,11 @@ const AllToys = () => {
             <h1 className="text-2xl lg:text-4xl font-bold my-4 lg:my-8 text-center text-orange-primary">All Toys</h1>
             <div className="overflow-x-auto w-full">
                 <div className="my-4 flex items-end justify-end">
-                <select onClick={handleFilterOption} className="select select-bordered max-w-xs">
-                    <option selected>All</option>
-                    <option>Price</option>
-                    <option>Recent post</option>
-                </select>
+                    <select onClick={handleFilterOption} className="select select-bordered max-w-xs">
+                        <option selected>All</option>
+                        <option>Price</option>
+                        <option>Recent post</option>
+                    </select>
                 </div>
                 <table className="table w-full">
                     {/* head */}
