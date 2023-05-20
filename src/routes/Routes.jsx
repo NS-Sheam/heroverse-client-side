@@ -8,6 +8,8 @@ import AllToys from "../pages/AllToys/AllToys";
 import AddToy from "../pages/AddToy/AddToy";
 import MyToys from "../pages/MyToys/MyToys";
 import UpdateToy from "../pages/MyToys/UpdateToy";
+import SingleDetails from "../pages/SingleDetails/SingleDetails";
+import PrivateRoutes from "./privateRoutes";
 
 const router = createBrowserRouter([
     {
@@ -18,6 +20,13 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <Home />
+            },
+            {
+                path: "singledata/:id",
+                element: <PrivateRoutes>
+                    <SingleDetails />
+                </PrivateRoutes>,
+                loader: ({ params }) => fetch(`http://localhost:5000/alldata/${params.id}`)
             },
             {
                 path: "login",

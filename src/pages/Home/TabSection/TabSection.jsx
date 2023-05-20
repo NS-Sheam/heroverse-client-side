@@ -3,6 +3,7 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
 import 'react-tabs/style/react-tabs.css';
+import { Link } from 'react-router-dom';
 
 
 const TabSection = () => {
@@ -29,7 +30,7 @@ const TabSection = () => {
                     <Tab><p className='text-xl font-bold bg-orange-primary px-6 py-2 rounded-full text-white'>Car</p></Tab>
                 </TabList>
                 <TabPanel>
-                <div className="flex flex-col lg:flex-row my-5 gap-5">
+                    <div className="flex flex-col lg:flex-row my-5 gap-5">
                         {
                             dollData?.slice(0, 3).map((data) => {
                                 return (
@@ -49,7 +50,9 @@ const TabSection = () => {
                                                 </span>
                                             </div>
                                             <div className="card-actions justify-end">
-                                                <button className="px-4 py-2 rounded-full text-white bg-orange-primary hover:bg-orange-secondary">View Details</button>
+                                                <Link to={`/singledata/${data._id}`}>
+                                                    <button className="px-4 py-2 rounded-full text-white bg-orange-primary hover:bg-orange-secondary">View Details</button>
+                                                </Link>
                                             </div>
                                         </div>
                                     </div>
@@ -79,7 +82,9 @@ const TabSection = () => {
                                                 </span>
                                             </div>
                                             <div className="card-actions justify-end">
-                                                <button className="px-4 py-2 rounded-full text-white bg-orange-primary hover:bg-orange-secondary">View Details</button>
+                                                <Link to={`/singledata/${data._id}`}>
+                                                    <button className="px-4 py-2 rounded-full text-white bg-orange-primary hover:bg-orange-secondary">View Details</button>
+                                                </Link>
                                             </div>
                                         </div>
                                     </div>
