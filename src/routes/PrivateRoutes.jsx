@@ -3,19 +3,22 @@ import { Navigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../providers/AuthProviders";
 
 
-const PrivateRoutes = ({children}) => {
+const PrivateRoutes = ({ children }) => {
     const { user, loading } = useContext(AuthContext);
     const location = useLocation();
 
     if (loading) {
-        return <button className="btn loading">loading</button>
+        return <div className="h-screen flex justify-center items-center">
+            <button className="btn loading bg-orange-primary border-none">loading</button>
+        </div>
+
     }
 
     if (user?.email) {
         return children;
     }
 
-    return <Navigate to="/login" state={{from: location}} replace></Navigate>;
+    return <Navigate to="/login" state={{ from: location }} replace></Navigate>;
 };
 
 export default PrivateRoutes;

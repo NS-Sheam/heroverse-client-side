@@ -43,7 +43,7 @@ const UpdateToy = () => {
                 if (data.modifiedCount > 0) {
                     Swal.fire({
                         icon: 'success',
-                        title: 'Your work has been saved',
+                        title: 'Toy Updated',
                         showConfirmButton: false,
                         timer: 1500
                     })

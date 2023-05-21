@@ -8,18 +8,16 @@ import { AuthContext } from "../../providers/AuthProviders";
 const AllToys = () => {
     document.title = ("Heroverse||All Toys")
     const [allToys, setAlltoys] = useState([]);
-    const [itemsPerPage, setItemPerPage] = useState(5);
-    const [currentPage, setCurrentPage] = useState(0);
+    // const [itemsPerPage, setItemPerPage] = useState(5);
+    // const [currentPage, setCurrentPage] = useState(0);
     const [singleToyData, setSingleToyData] = useState([]);
     const [filterOption, setFilterOption] = useState("all");
+    const [showAll, setShowAll] = useState(false)
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
     // const location = useLocation();
-    console.log(allToys.length);
-    const totalPages = Math.ceil(allToys.length / itemsPerPage)
-    const pageNumbers = [...Array(totalPages).keys()];
-    console.log(totalPages);
-    console.log(pageNumbers);
+    // const totalPages = Math.ceil(allToys.length / itemsPerPage)
+    // const pageNumbers = [...Array(totalPages).keys()];
     useEffect(() => {
         fetch(`https://toy-marketplace-server-chi-seven.vercel.app/allData?filter=${filterOption}`)
             .then(res => res.json())
@@ -27,14 +25,20 @@ const AllToys = () => {
                 setAlltoys(data);
             })
     }, [filterOption])
-    useEffect(() => {
-        fetch(`https://toy-marketplace-server-chi-seven.vercel.app/allData?page=${currentPage}&limit=${itemsPerPage}`)
+    // https://toy-marketplace-server-chi-seven.vercel.app/
+    // useEffect(() => {
+    //     // fetch(`https://toy-marketplace-server-chi-seven.vercel.app/allData?page=${currentPage}&limit=${itemsPerPage}`)
+
+    // }, [])
+    const handleAllToys = () => {
+        fetch(`https://toy-marketplace-server-chi-seven.vercel.app/allData?limit=all`)
             .then(res => res.json())
             .then(data => {
                 setAlltoys(data);
+                setShowAll(!showAll);
                 return;
             })
-    }, [currentPage, itemsPerPage])
+    }
 
     const handleSingleToyData = id => {
         if (!user) {
@@ -62,11 +66,11 @@ const AllToys = () => {
                 setAlltoys(data);
             })
     }
-    const options = [5, 10, 20];
-    function handleSelectChange(event) {
-        setItemPerPage(parseInt(event.target.value));
-        setCurrentPage(0);
-    }
+    // const options = [5, 10, 20];
+    // function handleSelectChange(event) {
+    //     setItemPerPage(parseInt(event.target.value));
+    //     setCurrentPage(0);
+    // }
     return (
         <div className="container mx-auto px-10 my-5">
             <h1 className="text-2xl lg:text-4xl font-bold my-4 lg:my-8 text-center text-orange-primary">All Toys</h1>
@@ -114,7 +118,13 @@ const AllToys = () => {
             <SingleToy
                 singleToyData={singleToyData}
             />
-            <div className="pagination text-center space-x-4">
+            {
+                !showAll &&
+                <div className="my-4 flex items-end justify-end">
+                    <button onClick={handleAllToys} className="py-2 px-4 bg-orange-primary hover:bg-orange-secondary text-white font-bold rounded-md">See all</button>
+                </div>
+            }
+            {/* <div className="pagination text-center space-x-4">
                 {
                     pageNumbers.map(number => <button
                         key={number}
@@ -135,7 +145,7 @@ const AllToys = () => {
                         ))
                     }
                 </select>
-            </div>
+            </div> */}
         </div>
     );
 };
