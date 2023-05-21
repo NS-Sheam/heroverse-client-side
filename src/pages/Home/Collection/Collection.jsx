@@ -1,9 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-// import Swiper core and required modules
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
-
-// Import Swiper styles
 import 'swiper/swiper-bundle.min.css';
 import { Rating } from '@smastrom/react-rating';
 import { Link } from 'react-router-dom';
@@ -11,7 +8,7 @@ import { Link } from 'react-router-dom';
 const Collection = () => {
     const [alltoys, setAlltoys] = useState({})
     useEffect(() => {
-        fetch(`http://localhost:5000/allData`)
+        fetch(`https://toy-marketplace-server-chi-seven.vercel.app/allData`)
             .then(res => res.json())
             .then(data => {
                 setAlltoys(data);

@@ -12,7 +12,7 @@ const TabSection = () => {
     const [robotData, setRobotData] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:5000/allData")
+        fetch("https://toy-marketplace-server-chi-seven.vercel.app/allData")
             .then(res => res.json())
             .then(data => {
                 // console.log(data);

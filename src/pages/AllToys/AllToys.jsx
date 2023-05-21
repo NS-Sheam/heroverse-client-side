@@ -6,27 +6,41 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 
 const AllToys = () => {
-    document.title=("Heroverse||All Toys")
+    document.title = ("Heroverse||All Toys")
     const [allToys, setAlltoys] = useState([]);
+    const [itemsPerPage, setItemPerPage] = useState(5);
+    const [currentPage, setCurrentPage] = useState(0);
     const [singleToyData, setSingleToyData] = useState([]);
     const [filterOption, setFilterOption] = useState("all");
     const { user } = useContext(AuthContext);
     const navigate = useNavigate();
     // const location = useLocation();
+    console.log(allToys.length);
+    const totalPages = Math.ceil(allToys.length / itemsPerPage)
+    const pageNumbers = [...Array(totalPages).keys()];
+    console.log(totalPages);
+    console.log(pageNumbers);
     useEffect(() => {
-        fetch(`http://localhost:5000/allData?filter=${filterOption}`)
+        fetch(`https://toy-marketplace-server-chi-seven.vercel.app/allData?filter=${filterOption}`)
             .then(res => res.json())
             .then(data => {
                 setAlltoys(data);
             })
     }, [filterOption])
-
+    useEffect(() => {
+        fetch(`https://toy-marketplace-server-chi-seven.vercel.app/allData?page=${currentPage}&limit=${itemsPerPage}`)
+            .then(res => res.json())
+            .then(data => {
+                setAlltoys(data);
+                return;
+            })
+    }, [currentPage, itemsPerPage])
 
     const handleSingleToyData = id => {
         if (!user) {
             navigate("/login", { state: { from: location } })
         }
-        fetch(`http://localhost:5000/alldata/${id}`)
+        fetch(`https://toy-marketplace-server-chi-seven.vercel.app/alldata/${id}`)
             .then(res => res.json())
             .then(data => {
                 // console.log(data);
@@ -41,12 +55,17 @@ const AllToys = () => {
     const handleSearch = event => {
         event.preventDefault();
         const searchValue = event.target.value;
-        fetch(`http://localhost:5000/alldata?search=${searchValue}`)
+        fetch(`https://toy-marketplace-server-chi-seven.vercel.app/alldata?search=${searchValue}`)
             .then(res => res.json())
             .then(data => {
                 // console.log(data);
                 setAlltoys(data);
             })
+    }
+    const options = [5, 10, 20];
+    function handleSelectChange(event) {
+        setItemPerPage(parseInt(event.target.value));
+        setCurrentPage(0);
     }
     return (
         <div className="container mx-auto px-10 my-5">
@@ -54,8 +73,8 @@ const AllToys = () => {
             <div className="overflow-x-auto w-full">
                 <div className="my-4 flex items-center justify-between">
                     <form onChange={handleSearch} className="flex gap-2">
-                    <input type="text" name="search" placeholder="Toy Name" className="input input-bordered w-full max-w-xs" />
-                    <button type="submit" className="bg-orange-primary hover:bg-orange-secondary text-white font-bold py-3 px-3 rounded-md">Search</button>
+                        <input type="text" name="search" placeholder="Toy Name" className="input input-bordered w-full max-w-xs" />
+                        <button type="submit" className="bg-orange-primary hover:bg-orange-secondary text-white font-bold py-3 px-3 rounded-md">Search</button>
                     </form>
                     <select onClick={handleFilterOption} className="select select-bordered max-w-xs">
                         <option selected>All</option>
@@ -91,9 +110,32 @@ const AllToys = () => {
                     </tbody>
                 </table>
             </div>
+
             <SingleToy
                 singleToyData={singleToyData}
             />
+            <div className="pagination text-center space-x-4">
+                {
+                    pageNumbers.map(number => <button
+                        key={number}
+                        className={currentPage === number ?
+                            "btn btn-xs bg-blue-dark-light hover:bg-orange-secondary rounded-full border-none mx-2" :
+                            'btn btn-xs bg-orange-primary hover:bg-orange-secondary rounded-full border-none mx-2'}
+                        onClick={() => setCurrentPage(number)}
+                    >
+                        {number}
+                    </button>)
+                }
+                <select value={itemsPerPage} onChange={handleSelectChange}>
+                    {
+                        options.map(option => (
+                            <option key={option} value={option}>
+                                {option}
+                            </option>
+                        ))
+                    }
+                </select>
+            </div>
         </div>
     );
 };
