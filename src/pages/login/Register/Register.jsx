@@ -6,6 +6,7 @@ import { AuthContext } from "../../../providers/AuthProviders";
 import { updateProfile } from "firebase/auth";
 
 const Register = () => {
+    document.title=("Heroverse||Register")
     const { createUser } = useContext(AuthContext);
     const [error, setError] = useState(null)
     const navigate = useNavigate();

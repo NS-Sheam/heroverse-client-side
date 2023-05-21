@@ -4,6 +4,7 @@ import MyToysRow from "./MyToysRow";
 import Swal from "sweetalert2";
 
 const MyToys = () => {
+    document.title=("Heroverse||My Toys")
     const { user } = useContext(AuthContext);
     const [myToys, setMyToys] = useState([]);
     useEffect(() => {

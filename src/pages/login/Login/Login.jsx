@@ -7,7 +7,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../../providers/AuthProviders";
 const Login = () => {
     const { logIn, signInWithGoogle } = useContext(AuthContext);
-    const [error, setError] = useState(null)
+    const [error, setError] = useState(null);
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
     const navigate = useNavigate()
@@ -29,6 +29,7 @@ const Login = () => {
             })
 
     }
+    document.title=("Heroverse||Login")
     const handleGoogleSignIn = () => {
         signInWithGoogle()
             .then(async (result) => {
@@ -37,7 +38,7 @@ const Login = () => {
                 // await updateProfile(loggedUser, {
                 //     displayName: name,
                 // });
-                navigate("/");
+                navigate(from, { replace: true });
             })
             .catch(error =>{
                 console.log(error.message);

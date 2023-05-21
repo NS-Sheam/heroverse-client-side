@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../../providers/AuthProviders";
 
 const AddToy = () => {
+    document.title=("Heroverse||Add Toy")
     const { user } = useContext(AuthContext);
     const handleAddToy = (event) => {
         event.preventDefault();

@@ -10,11 +10,11 @@ const Footer = () => {
             </div>
             <div>
                 <span className="text-white text-xl">Services</span>
-                <Link to="/" className="link link-hover">Branding</Link>
+                <Link to="/addtoy" className="link link-hover">Add toy</Link>
                 <Link to="/" className="link link-hover">Design</Link>
                 <Link to="/" className="link link-hover">Marketing</Link>
-                <Link to="/" className="link link-hover">All Toys</Link>
-                <Link to="/" className="link link-hover">Blogs</Link>
+                <Link to="/alltoys" className="link link-hover">All Toys</Link>
+                <Link to="/blogs" className="link link-hover">Blogs</Link>
             </div>
             <div>
                 <span className="text-white text-xl">Company</span>
@@ -22,7 +22,7 @@ const Footer = () => {
                 <Link to="/" className="link link-hover">Contact</Link>
                 <Link to="/" className="link link-hover">Jobs</Link>
                 <Link to="/login" className="link link-hover">Login</Link>
-                <Link to="/" className="link link-hover">register</Link>
+                <Link to="/register" className="link link-hover">register</Link>
             </div>
             <div>
                 <span className="text-white text-xl">Legal</span>

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 
 const AllToys = () => {
+    document.title=("Heroverse||All Toys")
     const [allToys, setAlltoys] = useState([]);
     const [singleToyData, setSingleToyData] = useState([]);
     const [filterOption, setFilterOption] = useState("all");

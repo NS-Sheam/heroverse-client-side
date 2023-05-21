@@ -3,6 +3,7 @@
 import { useState } from "react";
 
 const Blogs = () => {
+    document.title=("Heroverse||Blogs")
     const [foldQ1, setFoldQ1] = useState(false)
     const [foldQ2, setFoldQ2] = useState(false)
     const [foldQ3, setFoldQ3] = useState(false)

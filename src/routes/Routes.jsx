@@ -11,7 +11,6 @@ import UpdateToy from "../pages/MyToys/UpdateToy";
 import SingleDetails from "../pages/SingleDetails/SingleDetails";
 import PrivateRoutes from "./privateRoutes";
 import Errorpage from "../pages/ErrorPage/ErrorPage";
-
 const router = createBrowserRouter([
     {
         path: "/",
@@ -20,7 +19,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "/",
-                element: <Home />
+                element: <Home />,
             },
             {
                 path: "singledata/:id",
