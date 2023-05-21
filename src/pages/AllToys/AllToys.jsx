@@ -2,7 +2,7 @@
 import AllToysRows from "./AllToysRows";
 import SingleToy from "../../components/SingleToy/SingleToy";
 import { useContext, useEffect, useState } from "react";
-import { Navigate, useLocation, useNavigate, useNavigation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 
 const AllToys = () => {
@@ -37,11 +37,25 @@ const AllToys = () => {
         const filter = event.target.value;
         setFilterOption(filter);
     }
+    const handleSearch = event => {
+        event.preventDefault();
+        const searchValue = event.target.value;
+        fetch(`http://localhost:5000/alldata?search=${searchValue}`)
+            .then(res => res.json())
+            .then(data => {
+                // console.log(data);
+                setAlltoys(data);
+            })
+    }
     return (
         <div className="container mx-auto px-10 my-5">
             <h1 className="text-2xl lg:text-4xl font-bold my-4 lg:my-8 text-center text-orange-primary">All Toys</h1>
             <div className="overflow-x-auto w-full">
-                <div className="my-4 flex items-end justify-end">
+                <div className="my-4 flex items-center justify-between">
+                    <form onChange={handleSearch} className="flex gap-2">
+                    <input type="text" name="search" placeholder="Toy Name" className="input input-bordered w-full max-w-xs" />
+                    <button type="submit" className="bg-orange-primary hover:bg-orange-secondary text-white font-bold py-3 px-3 rounded-md">Search</button>
+                    </form>
                     <select onClick={handleFilterOption} className="select select-bordered max-w-xs">
                         <option selected>All</option>
                         <option>Price</option>

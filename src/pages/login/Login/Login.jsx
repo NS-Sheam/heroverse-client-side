@@ -6,7 +6,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../providers/AuthProviders";
 const Login = () => {
-    const {logIn} = useContext(AuthContext);
+    const { logIn, signInWithGoogle } = useContext(AuthContext);
     const [error, setError] = useState(null)
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
@@ -18,28 +18,42 @@ const Login = () => {
         const password = form.password.value;
         console.log(email, password);
         logIn(email, password)
-        .then(result => {
-            const loggedUser = result.user;
-            console.log(loggedUser);
-            form.reset();
-            navigate(from, {replace: true});
-        })
-        .catch(error=>{
-            setError(error.message)
-        })
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                form.reset();
+                navigate(from, { replace: true });
+            })
+            .catch(error => {
+                setError(error.message)
+            })
 
+    }
+    const handleGoogleSignIn = () => {
+        signInWithGoogle()
+            .then(async (result) => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                // await updateProfile(loggedUser, {
+                //     displayName: name,
+                // });
+                navigate("/");
+            })
+            .catch(error =>{
+                console.log(error.message);
+            })
     }
     return (
         <div className="hero bg-base-200">
             <form onSubmit={handleLogin} className="hero-content flex-col lg:flex-row-reverse">
-            <div className="hidden lg:block">
-                <Lottie
-                    options={{
-                        animationData: animation,
-                    }}
-                    width={600}
-                    height={800}
-                />
+                <div className="hidden lg:block">
+                    <Lottie
+                        options={{
+                            animationData: animation,
+                        }}
+                        width={600}
+                        height={800}
+                    />
                 </div>
                 <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
                     <div className="card-body">
@@ -63,7 +77,7 @@ const Login = () => {
                         </div>
                         <div className="w-full">
                             <GoogleButton className="mx-auto"
-                                onClick={() => { console.log('Google button clicked') }}
+                                onClick={handleGoogleSignIn}
                             />
                         </div>
                         {
