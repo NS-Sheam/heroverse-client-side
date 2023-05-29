@@ -17,6 +17,7 @@ const Gallery = () => {
         data-aos-anchor-placement="center-center"
         data-aos-easing="linear"
         data-aos-duration="200"
+        data-aos-offset="50"
             className="container mx-auto px-10 my-5">
             <h1 className="text-2xl lg:text-4xl font-bold my-4 lg:my-8 text-center text-orange-primary">Explore Our Gallery</h1>
             <div className="flex flex-wrap gap-5 mx-auto justify-center items-center">
