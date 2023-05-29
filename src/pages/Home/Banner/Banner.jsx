@@ -22,11 +22,11 @@ const Banner = () => {
             <div className="container mx-auto my-auto lg:flex justify-between items-center space-y-4 lg:space-y-0">
                 {/* left div  */}
                 <div
-                    // data-aos="zoom-in"
-                    // data-aos-offset="100"
-                    // data-aos-anchor-placement="center-center"
-                    // data-aos-easing="linear"
-                    // data-aos-duration="200"
+                    data-aos="zoom-in"
+                    data-aos-offset="100"
+                    data-aos-anchor-placement="center-center"
+                    data-aos-easing="linear"
+                    data-aos-duration="200"
                     className="lg:w-1/2 space-y-3">
                     <h1 className="text-3xl lg:text-5xl font-extrabold text-white">Welcome to Heroverse-</h1>
                     <h3 className="text-xl lg:text-3xl font-bold text-orange-secondary">Your Ultimate Destination for Action Figure Collectibles!</h3>
