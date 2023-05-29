@@ -40,6 +40,7 @@ const Collection = () => {
             data-aos-anchor-placement="center-center"
             data-aos-easing="linear"
             data-aos-duration="200"
+            data-aos-offset="100"
             className='container mx-auto px-10 my-5'>
             <h1 className="text-2xl lg:text-4xl font-bold my-4 lg:my-8 text-center text-orange-primary">Our Exclusive Toy Collection</h1>
             <Swiper
