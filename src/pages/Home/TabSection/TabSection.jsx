@@ -12,7 +12,7 @@ const TabSection = () => {
     const [robotData, setRobotData] = useState([]);
 
     useEffect(() => {
-        fetch("https://toy-marketplace-server-chi-seven.vercel.app/allData")
+        fetch("http://localhost:5000/allData")
             .then(res => res.json())
             .then(data => {
                 // console.log(data);
@@ -27,10 +27,8 @@ const TabSection = () => {
     return (
         <div
             data-aos="fade-up"
-            data-aos-anchor-placement="center-center"
-            data-aos-easing="linear"
-            data-aos-duration="200" 
-            data-aos-offset="150"
+            data-aos-anchor-placement="top-bottom"
+            data-aos-duration="1500"
             className='container mx-auto my-5 lg:my-8 px-6'>
             <h1 className="text-2xl lg:text-4xl font-bold my-4 lg:my-8 text-center text-orange-primary">Choose your favourite toy</h1>
             <Tabs className="w-4/5 mx-auto">

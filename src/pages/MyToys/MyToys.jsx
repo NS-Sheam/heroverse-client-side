@@ -8,7 +8,7 @@ const MyToys = () => {
     const { user } = useContext(AuthContext);
     const [myToys, setMyToys] = useState([]);
     useEffect(() => {
-        fetch(`https://toy-marketplace-server-chi-seven.vercel.app/allData?email=${user?.email}`)
+        fetch(`http://localhost:5000/allData?email=${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 setMyToys(data);
@@ -25,7 +25,7 @@ const MyToys = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://toy-marketplace-server-chi-seven.vercel.app/delete/${id}`, {
+                fetch(`http://localhost:5000/delete/${id}`, {
                     method: "DELETE"
                 })
                     .then(res => res.json())

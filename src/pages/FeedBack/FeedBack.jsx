@@ -4,9 +4,8 @@ const FeedBack = () => {
     return (
         <section
             data-aos="fade-up"
-            data-aos-anchor-placement="center-center"
-            data-aos-easing="linear"
-            data-aos-duration="200"
+            data-aos-anchor-placement="top-bottom"
+            data-aos-duration="1500"
             className="bg-gray-100 py-10">
             <div className="container mx-auto px-4">
                 <h1 className="text-2xl lg:text-4xl font-bold my-4 lg:my-8 text-center text-orange-primary">Customer Feedback</h1>

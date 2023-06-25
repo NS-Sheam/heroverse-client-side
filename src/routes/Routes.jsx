@@ -26,7 +26,7 @@ const router = createBrowserRouter([
                 element: <PrivateRoutes>
                     <SingleDetails />
                 </PrivateRoutes>,
-                loader: ({ params }) => fetch(`https://toy-marketplace-server-chi-seven.vercel.app/alldata/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/alldata/${params.id}`)
             },
             {
                 path: "login",
@@ -55,7 +55,7 @@ const router = createBrowserRouter([
             {
                 path: "updatetoy/:id",
                 element: <UpdateToy />,
-                loader: ({ params }) => fetch(`https://toy-marketplace-server-chi-seven.vercel.app/alldata/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/alldata/${params.id}`)
             },
             {
                 path: "blogs",

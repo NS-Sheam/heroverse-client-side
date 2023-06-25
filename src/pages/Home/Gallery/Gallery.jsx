@@ -3,7 +3,7 @@ const Gallery = () => {
     const [toyData, setToyData] = useState([]);
 
     useEffect(() => {
-        fetch("https://toy-marketplace-server-chi-seven.vercel.app/allData")
+        fetch("http://localhost:5000/allData")
             .then(res => res.json())
             .then(data => {
                 // console.log(data);
@@ -13,11 +13,9 @@ const Gallery = () => {
 
     return (
         <div
-        data-aos="fade-up"
-        data-aos-anchor-placement="center-center"
-        data-aos-easing="linear"
-        data-aos-duration="200"
-        data-aos-offset="50"
+            data-aos="fade-up"
+            data-aos-anchor-placement="top-bottom"
+            data-aos-duration="1000"
             className="container mx-auto px-10 my-5">
             <h1 className="text-2xl lg:text-4xl font-bold my-4 lg:my-8 text-center text-orange-primary">Explore Our Gallery</h1>
             <div className="flex flex-wrap gap-5 mx-auto justify-center items-center">

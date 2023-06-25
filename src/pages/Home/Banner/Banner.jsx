@@ -4,6 +4,7 @@ import superheros from "../../../assets/superhero.png"
 import { useEffect } from "react";
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import "./Banner.css"
 const Banner = () => {
     useEffect(() => {
         AOS.init();
@@ -22,11 +23,9 @@ const Banner = () => {
             <div className="container mx-auto my-auto lg:flex justify-between items-center space-y-4 lg:space-y-0">
                 {/* left div  */}
                 <div
-                    data-aos="zoom-in"
-                    data-aos-offset="100"
-                    data-aos-anchor-placement="center-center"
-                    data-aos-easing="linear"
-                    data-aos-duration="200"
+                     data-aos="zoom-in"
+                     data-aos-anchor-placement="top-bottom"
+                     data-aos-duration="1000"
                     className="lg:w-1/2 space-y-3">
                     <h1 className="text-3xl lg:text-5xl font-extrabold text-white">Welcome to Heroverse-</h1>
                     <h3 className="text-xl lg:text-3xl font-bold text-orange-secondary">Your Ultimate Destination for Action Figure Collectibles!</h3>
@@ -42,7 +41,7 @@ const Banner = () => {
                     </p>
                 </div>
                 {/* right div  */}
-                <div className="lg:w-1/2">
+                <div className="banner-img lg:w-1/2">
                     <img src={superheros} alt="" />
                 </div>
             </div>

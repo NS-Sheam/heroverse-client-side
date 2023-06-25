@@ -19,19 +19,19 @@ const AllToys = () => {
     // const totalPages = Math.ceil(allToys.length / itemsPerPage)
     // const pageNumbers = [...Array(totalPages).keys()];
     useEffect(() => {
-        fetch(`https://toy-marketplace-server-chi-seven.vercel.app/allData?filter=${filterOption}`)
+        fetch(`http://localhost:5000/allData?filter=${filterOption}`)
             .then(res => res.json())
             .then(data => {
                 setAlltoys(data);
             })
     }, [filterOption])
-    // https://toy-marketplace-server-chi-seven.vercel.app/
+    // http://localhost:5000/
     // useEffect(() => {
-    //     // fetch(`https://toy-marketplace-server-chi-seven.vercel.app/allData?page=${currentPage}&limit=${itemsPerPage}`)
+    //     // fetch(`http://localhost:5000/allData?page=${currentPage}&limit=${itemsPerPage}`)
 
     // }, [])
     const handleAllToys = () => {
-        fetch(`https://toy-marketplace-server-chi-seven.vercel.app/allData?limit=all`)
+        fetch(`http://localhost:5000/allData?limit=all`)
             .then(res => res.json())
             .then(data => {
                 setAlltoys(data);
@@ -44,7 +44,7 @@ const AllToys = () => {
         if (!user) {
             navigate("/login", { state: { from: location } })
         }
-        fetch(`https://toy-marketplace-server-chi-seven.vercel.app/alldata/${id}`)
+        fetch(`http://localhost:5000/alldata/${id}`)
             .then(res => res.json())
             .then(data => {
                 // console.log(data);
@@ -59,7 +59,7 @@ const AllToys = () => {
     const handleSearch = event => {
         event.preventDefault();
         const searchValue = event.target.value;
-        fetch(`https://toy-marketplace-server-chi-seven.vercel.app/alldata?search=${searchValue}`)
+        fetch(`http://localhost:5000/alldata?search=${searchValue}`)
             .then(res => res.json())
             .then(data => {
                 // console.log(data);
